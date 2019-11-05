@@ -1,0 +1,110 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Map static resources from the /rest/public folder to the /rest/assets URL path
+GET     /rest-sigeslub/assets/*file               controllers.Assets.versioned(path="/public", file: Asset)
+
+
+# Home page
+GET     /rest-sigeslub/                                           auth.AuthWS.index()
+POST    /rest-sigeslub/login                                      auth.AuthWS.login()
+POST    /rest-sigeslub/login-movil                                auth.AuthWS.loginMovil()
+
+# Usuarios
+GET     /rest-sigeslub/usuarios                                   restfull.UsuarioWS.getUsuarios()
+GET     /rest-sigeslub/usuario/:id                                restfull.UsuarioWS.getUsuario(id: Long)
+POST    /rest-sigeslub/usuario                                    restfull.UsuarioWS.registrarUsuario()
+PUT     /rest-sigeslub/usuario                                    restfull.UsuarioWS.actualizarDatosUsuario()
+DELETE  /rest-sigeslub/usuario/:id                                restfull.UsuarioWS.eliminarUsuario(id: Long)
+GET     /rest-sigeslub/usuarios/descargar-excel                   restfull.UsuarioWS.descargarExcelUsuarios()
+
+# Categorias
+GET     /rest-sigeslub/categorias                                 restfull.CategoriaWS.getCategorias()
+GET     /rest-sigeslub/categoria/:id                              restfull.CategoriaWS.getCategoria(id: Long)
+POST    /rest-sigeslub/categoria                                  restfull.CategoriaWS.registrarCategoria()
+PUT     /rest-sigeslub/categoria                                  restfull.CategoriaWS.actualizarCategoria()
+DELETE  /rest-sigeslub/categoria/:id                              restfull.CategoriaWS.eliminarCategoria(id: Long)
+
+# Minas
+GET     /rest-sigeslub/minas                                      restfull.MinaWS.getMinas()
+GET     /rest-sigeslub/mina/:id                                   restfull.MinaWS.getMina(id: Long)
+POST    /rest-sigeslub/mina                                       restfull.MinaWS.registrarMina()
+PUT     /rest-sigeslub/mina                                       restfull.MinaWS.actualizarMina()
+DELETE  /rest-sigeslub/mina/:id                                   restfull.MinaWS.eliminarMina(id: Long)
+
+# Superintendencias
+GET     /rest-sigeslub/superintendencias                          restfull.SuperintendenciaWS.getSuperintendencias()
+GET     /rest-sigeslub/superintendencia/:id                       restfull.SuperintendenciaWS.getSuperintendencia(id: Long)
+GET     /rest-sigeslub/superintendencias/mina/:id                 restfull.SuperintendenciaWS.getSuperintendenciasXMina(id: Long)
+POST    /rest-sigeslub/superintendencia                           restfull.SuperintendenciaWS.registrarSuperintendencia()
+PUT     /rest-sigeslub/superintendencia                           restfull.SuperintendenciaWS.actualizarSuperintendencia()
+DELETE  /rest-sigeslub/superintendencia/:id                       restfull.SuperintendenciaWS.eliminarSuperintendencia(id: Long)
+
+# Equipos
+GET     /rest-sigeslub/equipos                                    restfull.EquipoWS.getEquipos()
+GET     /rest-sigeslub/equipos/mina/:id                           restfull.EquipoWS.getEquiposXMinaId(id: Long)
+GET     /rest-sigeslub/equipos/superintendencia/:id               restfull.EquipoWS.getEquiposXSuperintendenciaId(id: Long)
+GET     /rest-sigeslub/equipo/:id                                 restfull.EquipoWS.getEquipo(id: Long)
+POST    /rest-sigeslub/equipo                                     restfull.EquipoWS.registrarEquipo()
+PUT     /rest-sigeslub/equipo                                     restfull.EquipoWS.actualizarEquipo()
+DELETE  /rest-sigeslub/equipo/:id                                 restfull.EquipoWS.eliminarEquipo(id: Long)
+POST    /rest-sigeslub/estadistica/dias                           restfull.EquipoWS.getEstadisticaSclDias()
+POST    /rest-sigeslub/equipos/seguimiento                        restfull.EquipoWS.getSeguimientoEquipos()
+POST    /rest-sigeslub/equipos/mantenimiento-correctivo           restfull.EquipoWS.getMantenimientoCorrectivoEquipos()
+POST    /rest-sigeslub/equipos/monitoreo-temperatura              restfull.EquipoWS.getMonitoreoTemperaturaEquipos()
+POST    /rest-sigeslub/seguimiento/descargar-excel                restfull.EquipoWS.descargarExcelSeguimientoPreventivo()
+GET     /rest-sigeslub/monitoreo/descargar-excel/:equipoId        restfull.EquipoWS.descargarMonitoreoTemperatura(equipoId: Long)
+GET     /rest-sigeslub/correctivo/historial                       restfull.EquipoWS.generarExcelHistorialCorrectivo()
+POST    /rest-sigeslub/correctivo/descargar-excel                 restfull.EquipoWS.descargarMantenimientoCorrectivo()
+
+# Modelos de Equipo
+GET     /rest-sigeslub/modelos                                    restfull.ModeloWS.getModelos()
+GET     /rest-sigeslub/modelo/:id                                 restfull.ModeloWS.getModelo(id: Long)
+GET     /rest-sigeslub/modelos/categoria/:id                      restfull.ModeloWS.getModelosxCategoria(id: Long)
+POST    /rest-sigeslub/modelo                                     restfull.ModeloWS.registrarModelo()
+PUT     /rest-sigeslub/modelo                                     restfull.ModeloWS.actualizarModelo()
+DELETE  /rest-sigeslub/modelo/:id                                 restfull.ModeloWS.eliminarModelo(id: Long)
+
+# Secciones
+GET     /rest-sigeslub/secciones                                  restfull.SeccionWS.getSecciones()
+GET     /rest-sigeslub/secciones/modelo/:modeloId                 restfull.SeccionWS.getSeccionesxModelo(modeloId: Long)
+GET     /rest-sigeslub/seccion/:id                                restfull.SeccionWS.getSeccione(id: Long)
+POST    /rest-sigeslub/seccion                                    restfull.SeccionWS.registrarSeccion()
+PUT     /rest-sigeslub/seccion                                    restfull.SeccionWS.actualizarSeccion()
+DELETE  /rest-sigeslub/seccion/:id                                restfull.SeccionWS.eliminarSeccion(id: Long)
+
+# Componentes para las secciones
+GET     /rest-sigeslub/componentes                                restfull.ComponenteWS.getComponentes()
+GET     /rest-sigeslub/componente/:id                             restfull.ComponenteWS.getComponente(id: Long)
+POST    /rest-sigeslub/componente                                 restfull.ComponenteWS.registrarComponente()
+PUT     /rest-sigeslub/componente                                 restfull.ComponenteWS.actualizarComponente()
+DELETE  /rest-sigeslub/componente/:id                             restfull.ComponenteWS.eliminarComponente(id: Long)
+
+# Formato unico de reporte
+GET     /rest-sigeslub/furs                                       restfull.FurWS.getFurs()
+GET     /rest-sigeslub/fur/:id                                    restfull.FurWS.getFurxId(id: Long)
+POST    /rest-sigeslub/fur                                        restfull.FurWS.registrarFur()
+PUT     /rest-sigeslub/fur                                        restfull.FurWS.actualizarFur()
+PUT     /rest-sigeslub/agregar-secciones/fur/:id                  restfull.FurWS.actualizarSeccionesFur(id: Long)
+DELETE  /rest-sigeslub/fur/:id                                    restfull.FurWS.eliminarFur(id: Long)
+
+# Inspecciones
+GET     /rest-sigeslub/inspecciones                               restfull.InspeccionWS.getInspecciones()
+GET     /rest-sigeslub/inspeccion/:id                             restfull.InspeccionWS.getInspeccionxId(id: Long)
+GET     /rest-sigeslub/inspeccion/tipo/:tipo                      restfull.InspeccionWS.getInspeccionesxTipo(tipo: String)
+GET     /rest-sigeslub/inspeccion/mina/:id                        restfull.InspeccionWS.getInspeccionesxMina(id: Long)
+GET     /rest-sigeslub/inspeccion/modelo/:id                      restfull.InspeccionWS.getInspeccionesxModelo(id: Long)
+GET     /rest-sigeslub/inspeccion/categoria-equipo/:id            restfull.InspeccionWS.getInspeccionesxCategoriaEquipo(id: Long)
+GET     /rest-sigeslub/descargar/inspecciones                     restfull.InspeccionWS.descargarInspecciones()
+GET     /rest-sigeslub/sync/inspecciones/pendientes               restfull.InspeccionWS.descargarInspeccionesSync()
+GET     /rest-sigeslub/sync/inspecciones/finalizadas              restfull.InspeccionWS.descargarInspeccionesFinalizadasResponsableId()
+POST    /rest-sigeslub/inspeccion                                 restfull.InspeccionWS.registrarInspeccion()
+PUT     /rest-sigeslub/inspeccion                                 restfull.InspeccionWS.actualizarInspeccion()
+POST    /rest-sigeslub/inspecciones/cunsulta-linea                restfull.InspeccionWS.listaInspeccionesConsultaLinea()
+GET     /rest-sigeslub/configuracion                              restfull.InspeccionWS.getConfiguracionInicial()
+GET     /rest-sigeslub/generar-pdf/inspeccion/:id                 restfull.InspeccionWS.getInspeccionPdf(id: Long)
+POST    /rest-sigeslub/estadistica/scl                            restfull.InspeccionWS.getEstadisticaInspeccionesScl()
+POST    /rest-sigeslub/estadistica/mc                             restfull.InspeccionWS.getEstadisticaInspeccionCorrectiva()
+
+DELETE  /rest-sigeslub/inspeccion/:id                             restfull.InspeccionWS.eliminarInspeccion(id: Long)
